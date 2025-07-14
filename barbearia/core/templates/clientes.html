@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Clientes{% endblock %}
+
+{% block content %}
+    <h2>Clientes cadastrados</h2>
+<a href="{% url 'cadastrar_cliente' %}" class="btn btn-success mb-3">+ Novo Cliente</a>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>Data de Cadastro</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cliente in clientes %}
+                <tr>
+                    <td>{{ cliente.nome }}</td>
+                    <td>{{ cliente.telefone }}</td>
+                    <td>{{ cliente.data_cadastro }}</td>
+                    <td> <a href="{% url 'editar_cliente' cliente.id %}" class="btn btn-sm btn-outline-warning">Editar</a> </td>
+
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="3">Nenhum cliente cadastrado.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

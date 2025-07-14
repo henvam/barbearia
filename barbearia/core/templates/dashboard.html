@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Painel de Resumo{% endblock %}
+
+{% block content %}
+    <h2 class="mb-4">Resumo da Barbearia</h2>
+
+    <div class="row text-center">
+        <div class="col-md-3 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Clientes</h5>
+                    <p class="display-6">{{ total_clientes }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Agendamentos</h5>
+                    <p class="display-6">{{ total_agendamentos }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Concluídos</h5>
+                    <p class="display-6">{{ agendamentos_concluidos }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Valor Total (R$)</h5>
+                    <p class="display-6">{{ valor_total|floatformat:2 }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

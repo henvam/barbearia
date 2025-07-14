@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Agendamentos{% endblock %}
+
+{% block content %}
+    <h2>Agendamentos</h2>
+    <a href="{% url 'novo_agendamento' %}" class="btn btn-success mb-3">+ Novo Agendamento</a>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Serviço</th>
+                <th>Data</th>
+                <th>Hora</th>
+                <th>Concluído</th>
+                <th>Ações</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for ag in agendamentos %}
+                <tr>
+                    <td>{{ ag.cliente.nome }}</td>
+                    <td>{{ ag.servico.nome }}</td>
+                    <td>{{ ag.data }}</td>
+                    <td>{{ ag.hora }}</td>
+                    <td>
+                        {% if ag.concluido %}
+                            ✅
+                        {% else %}
+                            ❌
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'concluir_agendamento' ag.id %}" class="btn btn-sm btn-outline-success">Concluir</a>
+                        <a href="{% url 'excluir_agendamento' ag.id %}" class="btn btn-sm btn-outline-danger">Excluir</a>
+                        <a href="{% url 'editar_agendamento' ag.id %}" class="btn btn-sm btn-outline-warning me-2">Editar</a>
+
+                    </td>
+
+
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">Nenhum agendamento encontrado.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

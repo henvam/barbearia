@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Calendário{% endblock %}
+
+{% block content %}
+    <h2>Calendário de Agendamentos</h2>
+    <div id="calendar"></div>
+{% endblock %}
+
+{% block scripts %}
+    <!-- FullCalendar CSS -->
+    <link href="https://unpkg.com/@fullcalendar/core@6.1.8/main.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/@fullcalendar/daygrid@6.1.8/main.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/@fullcalendar/timegrid@6.1.8/main.min.css" rel="stylesheet">
+
+    <!-- FullCalendar JS -->
+    <script src="https://unpkg.com/@fullcalendar/core@6.1.8/main.min.js"></script>
+    <script src="https://unpkg.com/@fullcalendar/daygrid@6.1.8/main.min.js"></script>
+    <script src="https://unpkg.com/@fullcalendar/timegrid@6.1.8/main.min.js"></script>
+    <script src="https://unpkg.com/@fullcalendar/core@6.1.8/locales-all.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let calendarEl = document.getElementById('calendar');
+            let calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                locale: 'pt-br',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                events: '/calendario/eventos/',
+                height: 'auto'
+            });
+            calendar.render();
+        });
+    </script>
+    <style>
+        #calendar {
+            max-width: 100%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+    </style>
+{% endblock %}
